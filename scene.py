@@ -19,15 +19,15 @@ def main():
     # Call your drawing functions such
     # as draw_sky and draw_ground here.
     draw_sky(canvas, scene_width, scene_height)
-    draw_ground(canvas, scene_width, scene_height)
-    draw_sun(canvas, 700, 200, 500)
     draw_cloud(canvas, 80, 30, 300, 310)
     draw_cloud(canvas, 80, 40, 500, 380)
     draw_cloud(canvas, 80, 30, 50, 400)
+    draw_ground(canvas, scene_width, scene_height)
+    draw_sun(canvas, 700, 200, 500)
     draw_pine_tree(canvas, 200, 150, 400)
     draw_pine_tree(canvas, 100, 50, 320)
-    draw_street(canvas)
-    
+    draw_street(canvas, 900, 500, 800)
+
     
 
 
@@ -99,19 +99,33 @@ def draw_cloud(canvas, diameter, space, x, y):
         
         interval = diameter - space
 
-
-        # Draw a row of 20 circles.
-    
         for i in range(3):
             draw_oval(canvas, x, y, x + diameter, y + diameter, outline="white",
                     fill="white")
             x += interval
 
 
-def draw_street(canvas):
-    draw_line(canvas, 600, 0, 600, 166, width=100, fill="black")
-    draw_line(canvas, 595, 0, 595, 166, width=2, fill="yellow")
-    draw_line(canvas, 605, 0, 605, 166, width=2, fill="yellow")
+def draw_street(canvas, center_x, scene_height, scene_width):
+    
+    
+    street_height = scene_height / 3
+    street_width = scene_width / 9
+    
+
+    center_x = (center_x / 2)
+
+    draw_line(canvas, center_x, 0 , center_x, street_height, width=street_width, fill="black")
+    space_between_lines = 5
+    interval = space_between_lines
+    for i in range(2): 
+    
+        draw_line(canvas, center_x, 0, center_x, street_height, width=2, fill="yellow")
+
+        center_x += interval
+
+        
+
+
 
 def draw_sun (canvas, x, y, diameter):
     draw_oval(canvas, x, y, x + diameter, y + diameter, outline="yellow", fill="yellow")
