@@ -1,4 +1,4 @@
-from sentences import get_determiner, get_noun, get_verb
+from sentences import get_determiner, get_noun, get_preposition, get_prepositional_phrase, get_verb
 import random
 import pytest
 
@@ -65,6 +65,38 @@ def test_get_verb():
         word = get_verb(1, "future")
         assert word in future_verbs
     
+def test_get_preposition():
+    prepositions = ["about", "above", "across", "after", "along", "around", "at", "before", "behind", "below", "beyond", "by", "despite", "except", "for", "from", "in", "into", "near", "of", "off", "on", "onto", "out", "over", "past", "to", "under", "with", "without"]
+    for i in range(4):
+        word = get_preposition()
+        assert word in prepositions
+
+def test_get_prepositional_phrase():
+    prepositions = ["about", "above", "across", "after", "along", "around", "at", "before", "behind", "below", "beyond", "by", "despite", "except", "for", "from", "in", "into", "near", "of", "off", "on", "onto", "out", "over", "past", "to", "under", "with", "without"]
+    singular_determiner = ["a", "one", "the"]
+    plural_determiner = ["some", "many", "the"]
+    singular_nouns = ["bird", "boy", "car", "cat", "child", "dog", "girl", "man", "rabbit", "woman"]
+    plural_nouns = ["birds", "boys", "cars", "cats", "children", "dogs", "girls", "men", "rabbits", "women"]
+
+    for _ in range(4):
+        word = get_prepositional_phrase(1)
+        list_lenght = len(word)
+        assert list_lenght is 3
+        assert word[0] in prepositions
+        assert word[1] in singular_determiner
+        assert word[2] in singular_nouns 
+
+    for _ in range(4):
+        word = get_prepositional_phrase(2)
+        list_lenght = len(word)
+        assert list_lenght is 3
+        assert word[0] in prepositions
+        assert word[1] in plural_determiner
+        assert word[2] in plural_nouns 
+    
+
+
+            
 
 
 # Call the main function that is part of pytest so that the

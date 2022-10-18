@@ -15,7 +15,7 @@ def get_sentences():
     for i in range(6):
         quantity = random.choice(quantities)
         tense = random.choice(tenses)
-        sentence = get_determiner(quantity) + " " + get_noun(quantity) + " " + get_verb(quantity, tense)
+        sentence = get_determiner(quantity) + " " + get_noun(quantity) + " " + split_prepositional_phrase(quantity) + " " + get_verb(quantity, tense) + " " + split_prepositional_phrase(quantity)
         print(sentence.capitalize())
 
 
@@ -106,6 +106,46 @@ def get_verb(quantity, tense):
         verbs = ["Will drink", "will eat", "will grow", "will laugh", "will think", "will run", "will sleep", "will talk", "will walk", "will write"]
     verb = random.choice(verbs)
     return verb
+
+
+def get_preposition():
+    """Return a randomly chosen preposition
+    from this list of prepositions:
+        "about", "above", "across", "after", "along",
+        "around", "at", "before", "behind", "below",
+        "beyond", "by", "despite", "except", "for",
+        "from", "in", "into", "near", "of",
+        "off", "on", "onto", "out", "over",
+        "past", "to", "under", "with", "without"
+
+    Return: a randomly chosen preposition.
+    """
+    prepositions = ["about", "above", "across", "after", "along", "around", "at", "before", "behind", "below", "beyond", "by", "despite", "except", "for", "from", "in", "into", "near", "of", "off", "on", "onto", "out", "over", "past", "to", "under", "with", "without"]
+    return random.choice(prepositions)
+
+
+def get_prepositional_phrase(quantity):
+    """Build and return a prepositional phrase composed of three
+    words: a preposition, a determiner, and a noun by calling the
+    get_preposition, get_determiner, and get_noun functions.
+
+    Parameter
+        quantity: an integer that determines if the determiner
+            and noun in the prepositional phrase returned from
+            this function are single or pluaral.
+    Return: a prepositional phrase.
+    """
+
+    prepositional_phrase = get_preposition(), get_determiner(quantity), get_noun(quantity) 
+
+    return prepositional_phrase
+
+def split_prepositional_phrase(quantity):
+    str = " "
+    joined_str = str.join(get_prepositional_phrase(quantity))
+    return joined_str
+
+
 
 if __name__ == "__main__":
     main()
