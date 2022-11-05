@@ -14,10 +14,7 @@ WEDDING_YEAR_INDEX = 2
 
 def main():
     people_dict = {
-        # Each item in the people dictionary is a key value pair.
-        # Each key is a unique identifier that begins with the
-        # letter "P". Each value is a list of data about a person.
-        # Each item in the dictionary is in this format:
+        # Each item in the people dictionary is a key value pair. Each key is a unique identifier that begins with the letter "P". Each value is a list of data about a person. Each item in the dictionary is in this format:
         # person_key: [name, gender, birth_year, death_year]
         "P143": ["Lola Park", "F", 1663, 1706],
         "P338": ["Savanna Foster", "F", 1674, 1723],
@@ -47,10 +44,7 @@ def main():
     }
 
     marriages_dict = {
-        # Each item in the marriages dictionary is a key value pair.
-        # Each key is a unique identifier that begins with the
-        # letter "M". Each value is a list of data about a marriage.
-        # Each item in the dictionary is in this format:
+        # Each item in the marriages dictionary is a key value pair. Each key is a unique identifier that begins with the letter "M". Each value is a list of data about a marriage. Each item in the dictionary is in this format:
         # marriage_key: [husband_key, wife_key, wedding_year]
         "M48": ["P203", "P201", 1711],
         "M45": ["P342", "P338", 1722],
@@ -71,28 +65,30 @@ def main():
         "M70": ["P152", "P168", 1928]
     }
 
-    # Call the print_death_age function to print
-    # each person's name and age at death.
+    # Call the print_death_age function to print each person's name and age at death.
     print_death_age(people_dict)
 
     # Print a blank line.
     print()
 
-    # Call the count_genders function to count
-    # and print the number of males and females.
+    # Call the count_genders function to count and print the number of males and females.
     count_genders(people_dict)
 
     # Print a blank line.
     print()
 
-    # Call the print_marriages function to print
-    # human readable data about the marriages.
+    # Call the print_marriages function to print human readable data about the marriages.
     print_marriages(marriages_dict, people_dict)
+
+    # Print a blank line.
+    print()
+
+    # Call the count_marriages function
+    count_marriages(marriages_dict, people_dict)
 
 
 def print_death_age(people_dict):
-    """For each person in the people dictionary,
-    print the person's name and age at death.
+    """For each person in the people dictionary, print the person's name and age at death.
 
     Parameter
         people_dict: a dictionary that contains data about people
@@ -100,12 +96,22 @@ def print_death_age(people_dict):
             person_key: [name, gender, birth_year, death_year]
     Return: nothing
     """
-    pass
+    print ('Ages at death')
+
+    for _ in people_dict:
+        name = people_dict[_][0]
+        birth = people_dict[_][2]
+        death = people_dict[_][3]
+
+        age_dead = death - birth
+
+        #print (f'{name} {age_dead}')
+        print (f'{name} {age_dead} Born: {birth} Death: {death}')
+
 
 
 def count_genders(people_dict):
-    """Count and print the number of males
-    and females in the people dictionary.
+    """Count and print the number of males and females in the people dictionary.
 
     Parameter
         people_dict: a dictionary that contains data about people
@@ -113,12 +119,25 @@ def count_genders(people_dict):
             person_key: [name, gender, birth_year, death_year]
     Return: nothing
     """
-    pass
+    male = 0
+    female = 0
+
+    for _ in people_dict:
+        gender = people_dict[_][1]
+
+
+        if gender == 'M':
+            male = male +1
+        elif gender == 'F':
+            female = female +1
+
+    print ('Genders')
+    print (f'Number of Males: {male}')
+    print (f'Number of Females: {female}')
 
 
 def print_marriages(marriages_dict, people_dict):
-    """For each marriage in the marriages dictionary, print
-    the husband's name, his age at wedding, the wedding year,
+    """For each marriage in the marriages dictionary, print the husband's name, his age at wedding, the wedding year,
     the wife's name, and her age at wedding.
 
     Parameters
@@ -130,7 +149,59 @@ def print_marriages(marriages_dict, people_dict):
             person_key: [name, gender, birth_year, death_year]
     Return: nothing
     """
-    pass
+    print ('Marriages')
+    for _ in marriages_dict:
+        husband = marriages_dict[_][0]
+        wife = marriages_dict[_][1]
+        wedding = marriages_dict[_][2]
+
+        name_husband = people_dict[husband][0]
+        name_wife = people_dict[wife][0]
+
+        born_husband = people_dict[husband][2]
+        born_wife = people_dict[wife][2]
+
+        age_hus = wedding - born_husband
+        age_wife = wedding - born_wife
+
+        print (f'{name_husband} {age_hus} > {wedding} < {name_wife} {age_wife}')
+
+
+def count_marriages(marriages_dict, people_dict):
+
+    list = people_dict.keys()
+
+    print ('Count of Marriages')
+
+    max_marriages = 0
+
+    for person in list:
+        name = people_dict[person][0]
+        gender = people_dict[person][1]
+
+        marriages = 0
+
+        if gender == 'M':
+            for _ in marriages_dict:
+                man = marriages_dict[_][0]
+                if person == man:
+                    marriages += 1
+        elif gender == 'F':
+            for _ in marriages_dict:
+                woman = marriages_dict[_][1]
+                if person == woman:
+                    marriages += 1
+
+        print (f'{name} - was married {marriages} times.')
+        
+        people_dict[person].append(marriages)
+
+        if marriages > max_marriages:
+            max_marriages = marriages
+            wedded_wonder = name
+
+    print (f'\n{wedded_wonder} was married the most times at {max_marriages} times.\n')
+
 
 
 # If this file was executed like this:
