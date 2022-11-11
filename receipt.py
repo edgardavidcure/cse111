@@ -10,7 +10,7 @@ def main():
     print(products_dict)
     print()
     print("Requested Items")
-    len(products_dict)
+    
     with open("request.csv", "rt") as request_file:
         reader = csv.reader(request_file)
         next(reader)
