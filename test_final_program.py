@@ -70,6 +70,7 @@ def test_get_order_number():
     order_numbers = [ 3248549, 4358344, 4987934, 8783473, 8947359, 4353478, 9089585, 1238392]
     number = get_order_number()
     assert number in order_numbers
+    assert 4353478 in order_numbers
 
 
     

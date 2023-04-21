@@ -1,0 +1,18 @@
+Please respond thoroughly (at least two sentences for each question) to
+the following three questions.
+
+1. Describe an experience you had this semester where you saw the power of
+functions.
+When I was working on the last project I realized how important using functions is, because I could use the functions endless times without having to type new code. I just needed to use the parameters and reuse the functions as I wanted. 
+
+
+2. In your judgment, what is the value of test functions?
+It allows you to make sure the functions work properly and that the results you expect are actually coming up
+
+
+
+3. Describe your process for troubleshooting and fixing a program that
+has a problem. What is one thing you can do to improve your process?
+I learned to use the debugger for python a lot. I would use it for those times where my code was giving me a different result than I expected and needed to check where exactly the problem was happening. It was very helpful.
+I would first read the code, understand the variables, functions, parameters, the description of the functions and the intended results, I would run the program, check if there are any issues, test multiple results and if the program crashes, I will try to identify where the problem is, try to fix it myself, use the debugger, use the test functions and try to run it again
+
